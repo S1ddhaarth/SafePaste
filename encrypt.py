@@ -10,3 +10,12 @@ def encrypt_string(plain_text: str) -> tuple[bytes, bytes]:
 sent_data, key = encrypt_string("Hello, World!")
 print("Encrypted Data:", sent_data)
 print("Encryption Key:", key)
+
+def random_string(length: int =  7) -> str:
+    import random
+    import string
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for _ in range(length))
+
+a = random_string()
+print(a)
