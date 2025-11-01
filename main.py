@@ -73,7 +73,17 @@ class MainWindow(QMainWindow):
         self.ui.sendTextEdit.clear()
 
     def on_fetch_clicked(self):
-        print("Fetch button clicked")
+        input_text = self.ui.codeLineEdit.text().strip()
+        key_str, rand_str = input_text.split(" : ", 1)
+        key_str = key_str.strip()
+        rand_str = rand_str.strip()
+
+        enc_blob_b64 = db_ref.child(rand_str).get()
+        key_bytes = base64.b64decode(key_str)
+        encrypted_blob_bytes = base64.b64decode(enc_blob_b64)
+        decrypted_text = self.decrypt_string(encrypted_blob_bytes, key_bytes)
+        self.ui.receiveTextEdit.setText(decrypted_text)
+        self.ui.statusbar.showMessage("Data fetched and decrypted successfully!", 2000)
 
     def on_copy_clicked(self):
         id_string = self.ui.idLabel.text()
