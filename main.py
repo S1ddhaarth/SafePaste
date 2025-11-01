@@ -33,6 +33,7 @@ class MainWindow(QMainWindow):
     def connect_signals(self):
         self.ui.sendButton.clicked.connect(self.on_send_clicked)
         self.ui.fetchButton.clicked.connect(self.on_fetch_clicked)
+        self.ui.clipboardButton.clicked.connect(self.on_copy_clicked)
 
     @staticmethod
     def encrypt_string(plain_text: str) -> tuple[bytes, bytes]:
@@ -67,6 +68,14 @@ class MainWindow(QMainWindow):
 
     def on_fetch_clicked(self):
         print("Fetch button clicked")
+
+    def on_copy_clicked(self):
+        id_string = self.ui.idLabel.text()
+        if "ID - " in id_string and ":" not in id_string:
+            return
+        clipboard = QApplication.clipboard()
+        clipboard.setText(id_string.strip())
+        self.ui.statusbar.showMessage("Copied to clipboard!", 2000)
 
 
 if __name__ == "__main__":
