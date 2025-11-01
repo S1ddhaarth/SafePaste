@@ -42,6 +42,7 @@ class MainWindow(QMainWindow):
         key_str = key.decode('utf-8')
         output_display = f"{key_str} : {rand_str}"
         self.ui.idLabel.setText(output_display)
+        self.ui.sendTextEdit.clear()
 
     def on_fetch_clicked(self):
         print("Fetch button clicked")
