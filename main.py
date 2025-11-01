@@ -42,9 +42,8 @@ class MainWindow(QMainWindow):
         return encrypted_blob, key
 
     @staticmethod
-    def random_string(length: int =  7) -> str:
-        characters = string.ascii_letters + string.digits + string.punctuation
-        characters = characters.replace(':', '')
+    def random_string(length: int =  10) -> str:
+        characters = string.ascii_letters + string.digits
         return ''.join(random.choice(characters) for _ in range(length))
     
     def on_send_clicked(self):
@@ -55,6 +54,7 @@ class MainWindow(QMainWindow):
         _encrypted_blob, key = self.encrypt_string(plain_text)
         rand_str = self.random_string()
         key_str = key.decode('utf-8')
+        #db_ref.child(rand_str).set(encrypted_blob_str)
         output_display = f"{key_str} : {rand_str}"
         self.ui.idLabel.setText(output_display)
         self.ui.sendTextEdit.clear()
