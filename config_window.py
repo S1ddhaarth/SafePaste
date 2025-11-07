@@ -10,8 +10,20 @@ class ConfigWindow(QDialog, Ui_ApplicationSetup):
         self.connect_signals()
 
     def connect_signals(self):
-        pass
+        self.selectFileButton.clicked.connect(self.select_file)
 
+
+    def select_file(self):
+        file_path, not_needed = QFileDialog.getOpenFileName(
+            self,
+            "Select Firebase Admin Credentials",
+            "",
+            "JSON Files (*.json)"
+        )
+
+        if file_path:
+            self.selected_file_path = file_path
+            self.selectedFileLabel.setText(file_path)
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = ConfigWindow()
