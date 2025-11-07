@@ -47,7 +47,7 @@ class Ui_ApplicationSetup(object):
 
     def retranslateUi(self, ApplicationSetup):
         _translate = QtCore.QCoreApplication.translate
-        ApplicationSetup.setWindowTitle(_translate("ApplicationSetup", "Application Setup"))
+        ApplicationSetup.setWindowTitle(_translate("ApplicationSetup", "Configurations"))
         self.label_url.setText(_translate("ApplicationSetup", "Please enter your database URL :"))
         self.lineEdit_url.setPlaceholderText(_translate("ApplicationSetup", "https://example.com"))
         self.label_file.setText(_translate("ApplicationSetup", "Please provide your Firebase Admin Credentials (.json) :"))

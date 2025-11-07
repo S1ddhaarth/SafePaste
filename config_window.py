@@ -12,7 +12,7 @@ class ConfigWindow(QDialog, Ui_ApplicationSetup):
 
     def connect_signals(self):
         self.selectFileButton.clicked.connect(self.select_file)
-        self.buttonBox.accepted.connect(self.accept)
+        #self.buttonBox.accepted.connect(self.accept)
 
 
     def select_file(self):
@@ -29,11 +29,11 @@ class ConfigWindow(QDialog, Ui_ApplicationSetup):
     def accept(self):
         database_url = self.lineEdit_url.text().strip()
         if not database_url:
-            print("Please enter a valid database URL.")
+            QtWidgets.QMessageBox.warning(self, "Input Error", "Please enter a valid database URL !")
             return
 
         if not self.selected_file_path:
-            print("Please select a valid Firebase Admin Credentials file.")
+            QtWidgets.QMessageBox.warning(self, "Input Error", "Please select a valid Firebase Admin Credentials file.")
             return
         
         with open("config.txt", "w") as config_file:
