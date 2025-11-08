@@ -89,6 +89,9 @@ class MainWindow(QMainWindow):
             rand_str = rand_str.strip()
 
             enc_blob_b64 = db_ref.child(rand_str).get()
+            if enc_blob_b64 is None:
+                self.ui.statusbar.showMessage("Invalid ID. Try again!!", 2000)
+                return
             key_bytes = base64.b64decode(key_str)
             encrypted_blob_bytes = base64.b64decode(enc_blob_b64)
             decrypted_text = self.decrypt_string(encrypted_blob_bytes, key_bytes)
