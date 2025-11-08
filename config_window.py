@@ -40,11 +40,11 @@ class ConfigWindow(QDialog, Ui_ApplicationSetup):
         with open("config.txt", "w") as config_file:
             config_file.write(f"{database_url}\n")
             config_file.write(f"{self.selected_file_path}\n")
-        subprocess.run(["cp", self.selected_file_path, "serviceAccountKey.json"])
+        subprocess.run(["cp", self.selected_file_path, "serviceAccountKey.json"],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         super().accept()      
         
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = ConfigWindow()
-    window.show()
-    sys.exit(app.exec())
+#if __name__ == "__main__":
+    #app = QApplication(sys.argv)
+    #window = ConfigWindow()
+    #window.show()
+    #sys.exit(app.exec())
