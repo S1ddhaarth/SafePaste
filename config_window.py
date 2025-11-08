@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtWidgets import QDialog, QFileDialog, QApplication
 from configs import Ui_ApplicationSetup
@@ -39,6 +40,7 @@ class ConfigWindow(QDialog, Ui_ApplicationSetup):
         with open("config.txt", "w") as config_file:
             config_file.write(f"{database_url}\n")
             config_file.write(f"{self.selected_file_path}\n")
+        subprocess.run(["cp", self.selected_file_path, "serviceAccountKey.json"])
         super().accept()      
         
 if __name__ == "__main__":
