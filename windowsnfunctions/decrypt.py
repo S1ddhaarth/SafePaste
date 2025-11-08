@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-from encrypt import encrypt_string
+from .encrypt import encrypt_string
 
 def decrypt_string(encrypted_blob: bytes, key: bytes) -> str:
     cipher = Fernet(key)
