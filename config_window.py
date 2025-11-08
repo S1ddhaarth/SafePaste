@@ -2,7 +2,7 @@ import sys
 import subprocess
 from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtWidgets import QDialog, QFileDialog, QApplication
-from configs import Ui_ApplicationSetup
+from ui_files.configs import Ui_ApplicationSetup
 
 class ConfigWindow(QDialog, Ui_ApplicationSetup):
     def __init__(self, parent=None):

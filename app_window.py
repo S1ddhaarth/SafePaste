@@ -6,7 +6,7 @@ import base64
 
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from ui_generated import Ui_CommandLineTool
+from ui_files.ui_generated import Ui_CommandLineTool
 from cryptography.fernet import Fernet, InvalidToken
 from firebase_admin import credentials, db
 
