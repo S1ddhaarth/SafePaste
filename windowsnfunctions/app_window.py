@@ -9,10 +9,14 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 from ui_files.ui_generated import Ui_CommandLineTool
 from cryptography.fernet import Fernet, InvalidToken
 from firebase_admin import credentials, db
+from pathlib import Path
 
-cred = credentials.Certificate("serviceAccountKey.json")
+config_dir = Path.home() / ".safepaste"
+config_file = config_dir / "config.txt"
 
-with open("config.txt", "r") as config_file:
+cred = credentials.Certificate(config_dir/"serviceAccountKey.json")
+
+with open(config_file, "r") as config_file:
     lines = config_file.readlines()
     database_url = lines[0].strip()
 

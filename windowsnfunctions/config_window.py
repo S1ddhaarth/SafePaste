@@ -3,6 +3,10 @@ import shutil
 from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtWidgets import QDialog, QFileDialog, QApplication
 from ui_files.configs import Ui_ApplicationSetup
+from pathlib import Path
+
+config_dir = Path.home() / ".safepaste"
+config_file_loc = config_dir / "config.txt"
 
 class ConfigWindow(QDialog, Ui_ApplicationSetup):
     def __init__(self, parent=None):
@@ -37,10 +41,12 @@ class ConfigWindow(QDialog, Ui_ApplicationSetup):
             QtWidgets.QMessageBox.warning(self, "Input Error", "Please select a valid Firebase Admin Credentials file.")
             return
         
-        with open("config.txt", "w") as config_file:
+        config_dir.mkdir(parents=True, exist_ok=True)
+
+        with open(config_file_loc, "w") as config_file:
             config_file.write(f"{database_url}\n")
             config_file.write(f"{self.selected_file_path}\n")
-        shutil.copy(self.selected_file_path, "serviceAccountKey.json")
+        shutil.copy(self.selected_file_path, config_dir/"serviceAccountKey.json")
         #subprocess.run(["cp", self.selected_file_path, "serviceAccountKey.json"],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         super().accept()      
         
